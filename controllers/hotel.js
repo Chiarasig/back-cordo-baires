@@ -1,4 +1,5 @@
-const Hotel = require('../models/Hotel')
+const Hotel = require('../models/Hotel');
+const { all } = require('../routes/hotelId');
 
 const controller = {
     create: async (req, res) => {
@@ -50,6 +51,30 @@ const controller = {
                 message: error.message
             })
         }
-}}
+}, update: async (req, res) => {
+    let { id } = req.params
+    try {
+        let one = await Hotel.findOneAndUpdate({_id: id}, req.body, {new: true})
+        if (one){
+            res.status(200).json({
+            id: all._id,
+            success: true,
+            message: "Successfully modified hotel"
+
+            })
+        } else {
+            res.status(404).json({
+            success: false,
+            message: "No hotels found"
+            })
+        }
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message
+        })
+     }
+}
+}
 
 module.exports = controller;
