@@ -57,7 +57,7 @@ const controller = {
         let one = await Hotel.findOneAndUpdate({_id: id}, req.body, {new: true})
         if (one){
             res.status(200).json({
-            id: all._id,
+            id: one._id,
             success: true,
             message: "Successfully modified hotel"
 
