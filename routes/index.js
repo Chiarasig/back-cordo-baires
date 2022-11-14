@@ -8,7 +8,7 @@ let city = require('./city')
 router.use('/city', city)
 
 let hotel = require('./hotel')
-router.use('/hotel', hotel)
+router.use('/hotels', hotel)
 
 let hotelId = require('./hotelId')
 router.use('/hotels', hotelId)
