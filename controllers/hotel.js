@@ -80,7 +80,7 @@ const controller = {
         let one = await Hotel.findOneAndDelete({_id: id})
         if (one){
             res.status(200).json({
-            id: all._id,
+            id: one._id,
             success: true,
             message: "Successfully deleted hotel"
 
