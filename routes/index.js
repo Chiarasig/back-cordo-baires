@@ -12,4 +12,7 @@ router.use('/hotels', hotel)
 
 let hotelId = require('./hotelId')
 router.use('/hotels', hotelId)
+
+let show = require('./show')
+router.use('/shows', show)
 module.exports = router;
