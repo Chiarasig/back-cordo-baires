@@ -25,7 +25,7 @@ const controller = {
             }
         }
         try{
-            let todos = await City.find(query) ;
+            let todos = await City.find(query) ; 
             if(todos){
                 res.status(200).json({
                     response: todos,
