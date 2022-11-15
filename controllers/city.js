@@ -48,7 +48,7 @@ const controller = {
   update: async(req, res) => {
     let { id } = req.params
     try {
-      let updated_city = await City.findByIdAndUpdate({_id: id}, req.body)
+      let updated_city = await City.findByIdAndUpdate({_id: id}, req.body , {new: true})
         res.status(200).json({
             response: updated_city,
             success: true,
@@ -59,8 +59,22 @@ const controller = {
             success: false,
             message: err.message
         })
-    }
-    },
+    }},
+    destroy: async (req, res) => {
+        let { id } = req.params
+        try {
+          let deleted_city = await City.findByIdAndDelete({_id: id})
+            res.status(200).json({
+                response: deleted_city,
+                success: true,
+                message: "City deleted successfully"
+            })
+        } catch (err) {
+            res.status(400).json({
+                success: false,
+                message: err.message
+            })
+        }}
   
 };
 
