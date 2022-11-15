@@ -1,4 +1,5 @@
 const Itinerary = require('../models/Itinerary');
+const Show = require('../models/Show');
 
 const controller = {
     read: async (req,res) => {
@@ -10,13 +11,20 @@ const controller = {
             }
         }
         try{
-            let todos = await Itinerary.find(query) ; 
+            let todos = await Itinerary.find(query).populate('cityId', 'name')
             if(todos){
                 res.status(200).json({
-                    response: todos,
-                    succes:true,
-                    message: "Cities retrieved successfully"
-                })    
+                    response: todos.map((item) => ({
+                      cityId: item.cityId,
+                      name: item.name,
+                      photo: item.photo,
+                      description: item.description,
+                      price: item.price,
+                      duration: item.duration,
+                    })),
+                    success: true,
+                    message: "show found",
+                  })    
             }else{
                 res.status(404).json({
                     success: false,
