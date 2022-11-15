@@ -55,18 +55,37 @@ const controller = {
   update: async (req, res) => {
     let { id } = req.params;
     try {
-      let updated_itinerary = await Itinerary.findByIdAndUpdate({_id: id},req.body,{new: true});
-        res.status(200).json({
-            response: updated_itinerary,
-            success: true,
-            message: "Itinerary updated successfully"
-        })
+      let updated_itinerary = await Itinerary.findByIdAndUpdate(
+        { _id: id },
+        req.body,
+        { new: true }
+      );
+      res.status(200).json({
+        response: updated_itinerary,
+        success: true,
+        message: "Itinerary updated successfully",
+      });
     } catch (err) {
-        res.status(400).json({
-            success: false,
-            message: err.message
-        })
-    }
+      res.status(400).json({
+        success: false,
+        message: err.message,
+      });
+    }},
+    destroy: async (req, res) => {
+        let { id } = req.params
+        try {
+            let deleted_itinerary = await Itinerary.findById({_id: id})
+            res.status(200).json({
+                response: deleted_itinerary,
+                success: true,
+                message: "Itinerary deleted successfully"
+            })
+        } catch (err) {
+            res.status(400).json({
+                success: false,
+                message: err.message
+            })
+        }
     }
 };
 module.exports = controller;
