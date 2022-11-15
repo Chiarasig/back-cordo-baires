@@ -3,4 +3,5 @@ let { read } = require('../controllers/hotelId')
 
 router.route('/:id').get(read)
 
+
 module.exports = router

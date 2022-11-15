@@ -30,7 +30,7 @@ const controller = {
             order = {name: req.query.order}
         }
         try {
-            let all = await Hotel.find(query).sort(order);
+            let all = await Hotel.find(query).sort(order).populate('userId cityId', 'name')
             if (all){
                 res.status(200).json({
                 response: all,
