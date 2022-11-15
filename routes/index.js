@@ -7,6 +7,12 @@ router.use('/user', user)
 let city = require('./city')
 router.use('/city', city)
 
+let cityId = require('./cityId')
+router.use('/cities', cityId)
+
+let itinerary = require('./itinerary')
+router.use('/itineraries', itinerary)
+
 let hotel = require('./hotel')
 router.use('/hotels', hotel)
 
