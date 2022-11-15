@@ -52,5 +52,21 @@ const controller = {
       });
     }
   },
+  update: async (req, res) => {
+    let { id } = req.params;
+    try {
+      let updated_itinerary = await Itinerary.findByIdAndUpdate({_id: id},req.body,{new: true});
+        res.status(200).json({
+            response: updated_itinerary,
+            success: true,
+            message: "Itinerary updated successfully"
+        })
+    } catch (err) {
+        res.status(400).json({
+            success: false,
+            message: err.message
+        })
+    }
+    }
 };
 module.exports = controller;
