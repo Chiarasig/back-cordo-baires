@@ -24,6 +24,7 @@ const controller = {
             query = {
                 ...query,
                 name: {$regex: query.name, $options: 'i'}
+                //regex nos permite la busqueda de tipo search (Complemento de mongoose para búsqueda de expresiones regulares en campos de búsqueda de esquema.), mediante la i pasamos todo a minuscula (similar al toLowerCase)
             }
         }
         if (req.query.order){
