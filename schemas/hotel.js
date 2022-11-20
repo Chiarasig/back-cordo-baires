@@ -8,7 +8,7 @@ const schema = joi.object({
         .max(50)
         .messages({
             "string.base": "Please enter words",
-            "any.required": "This field is required, please enter it",
+            "any.required": "Name is required, please enter it",
             "string.empty": "You did not enter anything in the name field",
             "string.min": "min require 3 letters",
             "string.max": "max require 50 letters"
@@ -18,7 +18,7 @@ const schema = joi.object({
         .min(3)
         .items(joi.string().required().uri()
         .messages({
-        "any.required": "complete this input, please",
+        "any.required": "Photo is required, please enter it",
         "string.empty": "complete the URL photo, please",
       })),
       capacity: joi
@@ -33,7 +33,7 @@ const schema = joi.object({
         .string()
         .required()
         .messages({
-            "any.required": "This field is required, please enter it",
+            "any.required": "cityId is required, please enter it",
             "string.base": "Please enter words",
             "string.empty": "You did not enter anything in the cityId field",
         }),
@@ -41,7 +41,7 @@ const schema = joi.object({
         .string()
         .required()
         .messages({
-            "any.required": "This field is required, please enter it",
+            "any.required": "userId is required, please enter it",
             "string.base": "Please enter words",
             "string.empty": "You did not enter anything in the photo field",
         })
