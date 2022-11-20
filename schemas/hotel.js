@@ -30,9 +30,21 @@ const schema = joi.object({
         "number.base": "enter the number of the capacity please",
         }),
     cityId: joi
-        .any,
+        .string()
+        .required()
+        .messages({
+            "any.required": "This field is required, please enter it",
+            "string.base": "Please enter words",
+            "string.empty": "You did not enter anything in the cityId field",
+        }),
     userId:  joi
-        .any
+        .string()
+        .required()
+        .messages({
+            "any.required": "This field is required, please enter it",
+            "string.base": "Please enter words",
+            "string.empty": "You did not enter anything in the photo field",
+        })
 })
 
 module.exports = schema
