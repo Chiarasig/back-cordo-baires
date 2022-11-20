@@ -32,12 +32,11 @@ const controller = {
         }
         try {
             let all = await Hotel.find(query).sort(order).populate('userId cityId', 'name')
-            if (all){
+            if (all.length > 0) {
                 res.status(200).json({
                 response: all,
                 success: true,
                 message: "Hotels retrieved successfully"
-
                 })
             } else {
                 res.status(404).json({
