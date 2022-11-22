@@ -76,14 +76,7 @@ const controller = {
       let show = await Show.find(query).populate([{path: 'hotelId', select: 'name'}, {path: 'userId', select: 'role'}])
       show
         ? res.status(200).json({
-            response: show.map((item) => ({
-              hotelId: item.hotelId,
-              name: item.name,
-              photo: item.photo,
-              description: item.description,
-              price: item.price,
-              date: item.date,
-            })),
+            response: show,
             success: true,
             message: "show found",
           })
