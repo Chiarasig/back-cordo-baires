@@ -66,8 +66,14 @@ const controller = {
     }
   },
   read: async (req, res) => {
+    let query = {}
+    if(req.query.userId){
+      query ={ 
+          userId: req.query.userId
+      }
+  }
     try {
-      let show = await Show.find(req.query).populate('hotelId', 'name')
+      let show = await Show.find(query).populate([{path: 'hotelId', select: 'name'}, {path: 'userId', select: 'role'}])
       show
         ? res.status(200).json({
             response: show.map((item) => ({
