@@ -24,7 +24,7 @@ const schema = joi.object({
       capacity: joi
         .number()
         .required()
-        .min(500)
+        .min(100)
         .messages({
         "number.empty": "enter the number of the capacity please",
         "number.base": "enter the number of the capacity please",
@@ -43,7 +43,7 @@ const schema = joi.object({
         .messages({
             "any.required": "userId is required, please enter it",
             "string.base": "Please enter words",
-            "string.empty": "You did not enter anything in the photo field",
+            "string.empty": "You did not enter anything in the userId field",
         })
 })
 

@@ -18,25 +18,20 @@ const controller = {
     }
     },
     read: async (req,res) => {
-        let {query} = req
-        let {order} = req
+        let query = {}
+        let order = {}
+        let name
         if(req.query.userId){
             query ={ 
                 userId: req.query.userId
             }
         }
-        if (req.query.name){
-            query = {
-                ...query,
-                name: {$regex: req.query.name, $options: 'i'}
-            }
-        }
-        if (req.query.order){
-            order = {
-                name: req.query.order
-            }
-        }
         try {
+            req.query.name?
+                name= req.query.name.toLowerCase() : ''
+                name ? query.name = { $regex : name, $options: 'i' } : ''
+                req.query.order?
+                order = {name:req.query.order} : ''
             let all = await Hotel.find(query).sort(order).populate([{path: 'cityId', select: 'name'}, {path: 'userId', select: 'role'}])
             if (all.length > 0) {
                 res.status(200).json({
