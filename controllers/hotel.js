@@ -20,18 +20,24 @@ const controller = {
     read: async (req,res) => {
         let {query} = req
         let {order} = req
-        if (query.name){
+        if(req.query.userId){
+            query ={ 
+                userId: req.query.userId
+            }
+        }
+        if (req.query.name){
             query = {
                 ...query,
-                name: {$regex: query.name, $options: 'i'}
-                //regex nos permite la busqueda de tipo search (Complemento de mongoose para búsqueda de expresiones regulares en campos de búsqueda de esquema.), mediante la i pasamos todo a minuscula (similar al toLowerCase)
+                name: {$regex: req.query.name, $options: 'i'}
             }
         }
         if (req.query.order){
-            order = {name: req.query.order}
+            order = {
+                name: req.query.order
+            }
         }
         try {
-            let all = await Hotel.find(query).sort(order).populate('userId cityId', 'name')
+            let all = await Hotel.find(query).sort(order).populate([{path: 'cityId', select: 'name'}, {path: 'userId', select: 'role'}])
             if (all.length > 0) {
                 res.status(200).json({
                 response: all,
