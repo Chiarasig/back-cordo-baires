@@ -18,14 +18,7 @@ const controller = {
       let todos = await Itinerary.find(query).populate([{path: 'cityId', select: 'name'}, {path: 'userId', select: 'role'}]);
       if (todos) {
         res.status(200).json({
-          response: todos.map((item) => ({
-            cityId: item.cityId,
-            name: item.name,
-            photo: item.photo,
-            description: item.description,
-            price: item.price,
-            duration: item.duration,
-          })),
+          response: todos,
           success: true,
           message: "show found",
         });
