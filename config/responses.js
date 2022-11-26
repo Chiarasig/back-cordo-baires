@@ -1,49 +1,49 @@
 function userExistsResponse(req,res) {
     return res.status(400).json({
         success: false,
-        message: 'user already exists'
+        message: 'User already exists'
     })
 }
 
 function userSignedUpResponse(req,res) {
     return res.status(201).json({
         success: true,
-        message: 'user signed up'
+        message: 'User signed up successfully'
     })
 }
 
 function userSignedOutResponse(req,res) {
     return res.status(201).json({
         success: true,
-        message: 'user signed out'
+        message: 'The session was closed'
     })
 }
 
 function userNotFoundResponse(req,res) {
     return res.status(404).json({
         success: false,
-        message: 'user not found'
+        message: 'User not found'
     })
 }
 
 function mustSignInResponse(req,res) {
     return res.status(400).json({
         success: false,
-        message: 'sign in please!'
+        message: 'Sign in please!'
     })
 }
 
 function invalidCredentialsResponse(req,res) {
     return res.status(401).json({
         success: false,
-        message: 'email or password incorrect'
+        message: 'Email or password incorrect'
     })
 }
 
 function verifyResponse(req,res) {
     return res.status(401).json({
         success: false,
-        message: 'Please, verify your email account and try again'
+        message: 'Please, verify your email account and try again!'
     })
 }
 
