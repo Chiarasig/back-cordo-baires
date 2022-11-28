@@ -59,13 +59,12 @@ const controller = {
     const { user } = req;
     try {
       const verifiedPassword = bcryptjs.compareSync(password, user.password);
-
       if (verifiedPassword) {
         const userDb = await User.findOneAndUpdate(
           { _id: user.id },
           { logged: true },
           { new: true }
-        );
+          );
         const token = jwt.sign(
           {
             id: userDb._id,
@@ -82,11 +81,11 @@ const controller = {
         return res.status(200).json({
           response: {
             user: {
-              name: user.name,
-              lastName: user.lastName,
-              photo: user.photo,
-              role: user.role,
-              logged: user.logged,
+              name: userDb.name,
+              lastName: userDb.lastName,
+              photo: userDb.photo,
+              role: userDb.role,
+              logged: userDb.logged,
             },
             token,
           },
@@ -107,7 +106,10 @@ const controller = {
         response: {
           user: {
             name: user.name,
+            lastName: user.lastName,
             photo: user.photo,
+            role: user.role,
+            logged: user.logged,
           },
         },
         success: true,
@@ -117,6 +119,20 @@ const controller = {
       next(error);
     }
   },
+  leave: async (req, res, next) => {
+    const {id} = req.user;
+    try{
+      let user = await User.findOneAndUpdate(
+        {_id: id},
+        {logged: false},
+        {new: true}
+      );
+      console.log(user);
+      return userSignedOutResponse(req, res);
+    }catch (error){
+      next(error);
+    }
+  }
 };
 
 module.exports = controller;

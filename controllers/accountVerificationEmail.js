@@ -44,6 +44,7 @@ function getEmailBody({mail, host, code}) {
 
 
 const accountVerificationEmail = async (mailNewUser,codeCrypto) => {
+    console.log("accountVerificationEmail")
     const client = createClient()
     client.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH })
     const transport = getTransport(client)
