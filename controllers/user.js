@@ -138,7 +138,7 @@ const controller = {
     try {
       let user = await User.findById({ _id: id });
       console.log(user);
-      if (user) {
+      if (user                     ) {
         res.status(200).json({
           success: true,
           message: "The user was successfully found",
