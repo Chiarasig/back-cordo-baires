@@ -10,6 +10,15 @@ const controller = {
             userId : query.userId
           };
         }
+        if (req.query.name) {
+          query = {...query, name: { $regex: req.query.name, $options: "i" } };
+        }
+        if (req.query.continent) {
+          query = {
+            ...query,
+            continent: req.query.continent?.split(","),
+          };
+        }
         try {
         console.log('estoy antes del find'); 
           let todos = await cityAdmin.find(query);

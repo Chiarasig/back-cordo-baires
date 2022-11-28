@@ -18,10 +18,13 @@ const controller = {
   },
   read: async (req, res) => {
     let { query } = req;
-    if (query.name) {
+    if (req.query.name) {
+      query = { name: { $regex: req.query.name, $options: "i" } };
+    }
+    if (req.query.continent) {
       query = {
         ...query,
-        name: { $regex: query.name, $options: "i" }, //i es para que sea insensible a mayusculas y minusculas
+        continent: req.query.continent?.split(","),
       };
     }
     try {
@@ -45,37 +48,40 @@ const controller = {
       });
     }
   },
-  update: async(req, res) => {
-    let { id } = req.params
+  update: async (req, res) => {
+    let { id } = req.params;
     try {
-      let updated_city = await City.findByIdAndUpdate({_id: id}, req.body , {new: true})
-        res.status(200).json({
-            response: updated_city,
-            success: true,
-            message: "City updated successfully"
-        })
+      let updated_city = await City.findByIdAndUpdate({ _id: id }, req.body, {
+        new: true,
+      });
+      res.status(200).json({
+        response: updated_city,
+        success: true,
+        message: "City updated successfully",
+      });
     } catch (err) {
-        res.status(400).json({
-            success: false,
-            message: err.message
-        })
-    }},
-    destroy: async (req, res) => {
-        let { id } = req.params
-        try {
-          let deleted_city = await City.findByIdAndDelete({_id: id})
-            res.status(200).json({
-                response: deleted_city,
-                success: true,
-                message: "City deleted successfully"
-            })
-        } catch (err) {
-            res.status(400).json({
-                success: false,
-                message: err.message
-            })
-        }}
-  
+      res.status(400).json({
+        success: false,
+        message: err.message,
+      });
+    }
+  },
+  destroy: async (req, res) => {
+    let { id } = req.params;
+    try {
+      let deleted_city = await City.findByIdAndDelete({ _id: id });
+      res.status(200).json({
+        response: deleted_city,
+        success: true,
+        message: "City deleted successfully",
+      });
+    } catch (err) {
+      res.status(400).json({
+        success: false,
+        message: err.message,
+      });
+    }
+  },
 };
 
 module.exports = controller;
