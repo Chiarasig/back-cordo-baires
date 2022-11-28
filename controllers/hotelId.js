@@ -5,18 +5,14 @@ const controller = {
         let { id } = req.params
         try {
             let one = await Hotel.findById(id).populate([{path: 'cityId', select: 'name'}, {path: 'userId', select: 'name photo'}])
-            if (id){
-                res.status(200).json({
+            one? res.status(200).json({
                 response: one,
-                success: true,
-                message: "Hotels retrieved successfully"
-                })
-            } else {
-                res.status(404).json({
-                success: false,
-                message: "No hotels found"
-                })
-            }
+                success:true,
+                message: 'Hotel retrieved successfully'
+            }) : res.status(404).json({
+                success:false,
+                message:'Hotel not found'
+            })
         } 
         catch (error) {
             res.status(400).json({
