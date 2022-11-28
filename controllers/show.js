@@ -91,6 +91,33 @@ const controller = {
       });
     }
   },
+  readById: async (req, res) => {
+    let { id } = req.params;
+    let query={};
+    if(id){
+      query ={ 
+       _id: id
+      }
+    }
+    try {
+      let show = await Show.find(query).populate([{path: 'hotelId', select: 'name'}, {path: 'userId', select: 'role'}])
+      show
+        ? res.status(200).json({
+            response: show,
+            success: true,
+            message: "show found",
+          })
+        : res.status(404).json({
+            success: false,
+            message: "show not found",
+          });
+    } catch (err) {
+      res.status(400).json({
+        success: false,
+        message: err.message,
+      });
+    }
+  },
 };
 
 module.exports = controller;
