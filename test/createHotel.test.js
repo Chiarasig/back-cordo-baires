@@ -30,6 +30,7 @@ describe('Verify create hotel', function(){
     })
 })   */
 
+
 describe("DELETE  a hotel successfully", function (done) {
   it("Delete a hotel successfully", function (done) {
     token =
@@ -47,3 +48,4 @@ describe("DELETE  a hotel successfully", function (done) {
       });
   });
 });
+
