@@ -13,7 +13,6 @@ async function accountExistsSignIn(req, res, next) {
             password: user.password,
             verified: user.verified
         }
-        //console.log(req.user)
         return next()
     }
     return invalidCredentialsResponse(req,res)
