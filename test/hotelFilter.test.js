@@ -3,7 +3,7 @@ const chai = require('chai');
 const expect = chai.expect;
 const request = require('supertest');
 
-/* 
+
 describe('Check status 404', function(){
     // it -test cases
     it('Check status 404', function(done){
@@ -21,4 +21,4 @@ describe('Check status 404', function(){
     })
 }) 
 
- */
+

@@ -5,7 +5,7 @@ const request = require('supertest');
 const { assert } = require('chai');
 
 
-/* describe('Verify create city', function(){
+describe('Verify create city', function(){
     // it -test cases
     it('Verify that the user sends a string', function(done){
           let user =  {
@@ -29,4 +29,4 @@ const { assert } = require('chai');
                 done()
             })
     })
-}) */
+})
