@@ -72,7 +72,7 @@ const controller = {
     destroy: async (req, res) => {
         let { id } = req.params
         try {
-            let deleted_itinerary = await Itinerary.findById({_id: id})
+            let deleted_itinerary = await Itinerary.findByIdAndDelete({_id: id})
             res.status(200).json({
                 response: deleted_itinerary,
                 success: true,
