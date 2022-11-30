@@ -18,7 +18,7 @@ const schema = joi.object({
     "string.base": "Please enter words",
     "any.required": "comment is required, please enter it",
     "string.empty": "You did not enter anything in the comment field",
-    "string.min": "min require 3 letters",
+    "string.min": "Min requires 3 letters to create this comment",
   }),
 })
 
