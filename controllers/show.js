@@ -67,11 +67,43 @@ const controller = {
   },
   read: async (req, res) => {
     let query = {}
-    if(req.query.userId){
+    if(req.query.hotelId){
       query ={ 
-          userId: req.query.userId
+        hotelId: req.query.hotelId
+      }
+    }
+    if(req.query.userId){
+      query = {
+        userId: req.query.userId
       }
   }
+    try {
+      let show = await Show.find(query)
+      show
+        ? res.status(200).json({
+            response: show,
+            success: true,
+            message: "show found",
+          })
+        : res.status(404).json({
+            success: false,
+            message: "show not found",
+          });
+    } catch (err) {
+      res.status(400).json({
+        success: false,
+        message: err.message,
+      });
+    }
+  },
+  readById: async (req, res) => {
+    let { id } = req.params;
+    let query={};
+    if(id){
+      query ={ 
+       _id: id
+      }
+    }
     try {
       let show = await Show.find(query).populate([{path: 'hotelId', select: 'name'}, {path: 'userId', select: 'role'}])
       show

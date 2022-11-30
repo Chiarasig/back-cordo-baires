@@ -1,12 +1,10 @@
 let router = require('express').Router();
 
-let user = require('./user')
-router.use('/user', user)
+let user = require("./user")
+router.use('/auth', user)
 
 let city = require('./city')
 router.use('/city', city)
-
-
 
 let cityId = require('./cityId')
 router.use('/cities', cityId)
@@ -25,4 +23,6 @@ router.use('/hotels', hotelId)
 
 let show = require('./show')
 router.use('/shows', show)
+
+
 module.exports = router;
