@@ -4,6 +4,7 @@ const schema = require('../schemas/show')
 const validator = require('../middlewares/validator')
 let { create, update, destroy, read, readById } = require('../controllers/show')
 
+
 router.route('/').post(passport.authenticate('jwt', { session:false }), validator(schema),create)
 router.route('/').get(read)
 router.route('/:id').get(readById)
