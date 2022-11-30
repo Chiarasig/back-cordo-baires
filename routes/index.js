@@ -24,5 +24,8 @@ router.use('/hotels', hotelId)
 let show = require('./show')
 router.use('/shows', show)
 
+let comment = require ('./comment')
+router.use('/comments', comment)
+
 
 module.exports = router;
