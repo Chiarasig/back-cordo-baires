@@ -10,6 +10,6 @@ router.route('/').post(passport.authenticate('jwt', { session:false }), validato
 router.route('/').get(read)
 router.route('/:id').get(readById)
 router.route('/:id').patch(passport.authenticate('jwt', { session:false }), isOwner(Show),update)
-router.route('/:id').delete(passport.authenticate('jwt', { session:false }),destroy)
+router.route('/:id').delete(passport.authenticate('jwt', { session:false }), isOwner(Show), destroy)
 
 module.exports = router
