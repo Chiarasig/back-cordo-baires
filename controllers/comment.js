@@ -8,6 +8,9 @@ const controller = {
         showId: req.query.showId,
       };
     }
+    if (req.query.itineraryId) {
+      query = { itineraryId: req.query.itineraryId };
+    }
     try {
       let all = await Comment.find(query)
         .sort({ date: -1 })
