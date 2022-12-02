@@ -3,17 +3,17 @@ const Comment = require("../models/Comment");
 const controller = {
   read: async (req, res) => {
     let query = {};
-    if (req.query.hotelId) {
+    if (req.query.showId) {
       query = {
-        hotelId: req.query.hotelId,
+        showId: req.query.showId,
       };
     }
     try {
       let all = await Comment.find(query)
-        .sort({ date: 1 })
+        .sort({ date: -1 })
         .populate([
           { path: "showId", select: "name" },
-          { path: "userId", select: "role" },
+          { path: "userId", select: "name photo role" },
         ]);
       if (all.length > 0) {
         res.status(200).json({
@@ -36,9 +36,11 @@ const controller = {
   },
   create: async (req, res) => {
     try {
-      let new_comment = await Comment.create(req.body);
+      let new_comment = await Comment.create({...req.body});
+      const allComment = await Comment.find()
       res.status(201).json({
         id: new_comment.id,
+        listComment: allComment,
         success: true,
         message: "Comment created successfully",
       });
@@ -55,10 +57,12 @@ const controller = {
       let one = await Comment.findOneAndUpdate({ _id: id }, req.body, {
         new: true,
       });
+      const allComment = await Comment.find()
       if (one) {
         res.status(200).json({
           id: one._id,
           success: true,
+          listComment: allComment,
           message: "Successfully modified comment",
         });
       } else {
@@ -78,9 +82,11 @@ const controller = {
     let { id } = req.params;
     try {
       let one = await Comment.findOneAndDelete({ _id: id });
+      const allComment = await Comment.find()
       if (one) {
         res.status(200).json({
           id: one._id,
+          listComment: allComment,
           success: true,
           message: "Successfully deleted comment",
         });
