@@ -7,7 +7,7 @@ const schema = new mongoose.Schema({
     photo: {type: String, required: true},
     price: {type: Number, required: true},
     date: {type: Date, required: true},
-    userId:  {type: mongoose.Types.ObjectId, ref: 'users', required: true}
+    userId:  {type: mongoose.Types.ObjectId, ref: 'users', required: true},
 })
 
 const Show = mongoose.model('shows', schema)
