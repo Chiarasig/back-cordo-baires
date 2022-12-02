@@ -6,7 +6,6 @@ let { create, update, destroy, read, readById } = require('../controllers/show')
 const isOwner = require('../middlewares/isOwner')
 const Show = require('../models/Show')
 
-
 router.route('/').post(passport.authenticate('jwt', { session:false }), validator(schema),create)
 router.route('/').get(read)
 router.route('/:id').get(readById)

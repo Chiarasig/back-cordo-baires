@@ -27,5 +27,9 @@ router.use('/shows', show)
 let reactions = require('./reactions')
 router.use('/reactions', reactions)
 
+let comment = require ('./comment')
+router.use('/comments', comment)
+
+
 
 module.exports = router;
