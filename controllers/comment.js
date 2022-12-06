@@ -16,6 +16,7 @@ const controller = {
         .sort({ date: -1 })
         .populate([
           { path: "showId", select: "name" },
+          { path: "itineraryId", select: "name" },
           { path: "userId", select: "name photo role" },
         ]);
       if (all.length > 0) {

@@ -3,11 +3,9 @@ const joi = require("joi");
 const schema = joi.object({
   showId: joi.string().messages({
     "string.empty": "Show ID is required",
-    "any.required": "Show ID is required",
   }),
   itineraryId: joi.string().messages({
     "string.base": `Event Id must be a type of 'text'`,
-    "any.required": "The Event Id field is required",
     "string.empty": "The itinerary ID field is empty",
   }),
   userId: joi.string().required().messages({
